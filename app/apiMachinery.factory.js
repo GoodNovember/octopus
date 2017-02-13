@@ -8,7 +8,7 @@
 	apiMachinery.inject = ['$http', '$q'];
 	function apiMachinery($http, $q) {
 
-		var base_api_url = "http://api.github.com/repos/GoodNovember/octopus/contents/";
+		var base_api_url = "https://api.github.com/repos/GoodNovember/octopus/contents/";
 
 		var service = {
 			getLetters:getLetters,
