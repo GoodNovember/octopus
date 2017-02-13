@@ -10,29 +10,44 @@
 			templateUrl:"./app/mainApp.html",
 		});//end component
 
-	mainApp.$inject = ["apiMachinery"];
+	mainApp.$inject = ["apiMachinery", "$localForage"];
 
-	function mainApp(apiMachinery){
+	function mainApp(apiMachinery, $localForage){
 		var $ctrl = this;
 		
 		$ctrl.$onInit = init;
 
 		$ctrl.letters = [];
 		
+		$ctrl.authenticate = authenticate;
+		$ctrl.logOut = logOut;
+		
 		function init(){
-			console.log("init component componentName", apiMachinery);
-			apiMachinery.getLetters().then(function(letters){
-				console.log("LETTERS:", letters);
-				apiMachinery.getFile(letters[0].path).then(gotFile);
 
-				function gotFile(data){
-					console.log("LETTTTTTTER:", data);
+			console.log("init component componentName");
+			
+			$ctrl.isLoggedIn = false;
+			
+			$localForage.getItem("authHeader").then(function(response){
+				if(response){
+					apiMachinery.setAuth(null, null, response).then(function(){
+						$ctrl.isLoggedIn = true;
+					});
 				}
-			})
+			});
+
 		}// end init
 
-		function getFiles(){
+		function authenticate(){
+			apiMachinery.setAuth($ctrl.username, $ctrl.password).then(function(){
+				$ctrl.isLoggedIn = true;
+			});
+		}
 
+		function logOut(){
+			apiMachinery.removeAuth().then(function(){
+				$ctrl.isLoggedIn = false;
+			})
 		}
 		
 	}//end controller

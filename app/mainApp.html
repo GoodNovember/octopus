@@ -1,1 +1,10 @@
 <h2>WOOSH!</h2>
+<div ng-hide="$ctrl.isLoggedIn">
+	<input type="text" name="github_username" id="github_username" ng-model="$ctrl.username">
+	<input type="password" name="github_password" id="github_password" ng-model="$ctrl.password">
+	<button ng-click="$ctrl.authenticate()">Unlock</button>
+</div>
+<div ng-show="$ctrl.isLoggedIn">
+	<div>Logged In</div>
+	<button ng-click="$ctrl.logOut()">Log out.</button>
+</div>
