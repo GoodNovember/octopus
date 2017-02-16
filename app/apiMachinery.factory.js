@@ -57,8 +57,7 @@
 		function getContents(user, repo, contents){
 			var url = "https://api.github.com/repos/" + user + "/" + repo + "/contents/" + contents;
 			return $q(function(resolve, reject){
-				$http
-					.get(url)
+				$http({url:url, method:"get", headers:{Authorization:undefined}})
 					.then(gottenFn)
 					.catch(reject);
 
