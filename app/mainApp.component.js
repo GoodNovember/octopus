@@ -10,9 +10,9 @@
 			templateUrl:"./app/mainApp.html",
 		});//end component
 
-	mainApp.$inject = ["apiMachinery", "$localForage"];
+	mainApp.$inject = ["apiMachinery", "$localForage", "fileFactory"];
 
-	function mainApp(apiMachinery, $localForage){
+	function mainApp(apiMachinery, $localForage, fileFactory){
 		var $ctrl = this;
 		
 		$ctrl.$onInit = init;
@@ -21,6 +21,7 @@
 		
 		$ctrl.authenticate = authenticate;
 		$ctrl.logOut = logOut;
+		$ctrl.getLetters = getLetters;
 		
 		function init(){
 
@@ -37,6 +38,21 @@
 			});
 
 		}// end init
+
+		function getLetters(){
+			apiMachinery.getLetters()
+				.then(gotLetters)
+				.catch(failedToGetLetters);
+
+			function gotLetters(letters){
+				$ctrl.letters = letters;
+			}
+
+			function failedToGetLetters(){
+
+			}
+
+		}
 
 		function authenticate(){
 			apiMachinery.setAuth($ctrl.username, $ctrl.password).then(function(){

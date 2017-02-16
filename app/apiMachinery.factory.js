@@ -14,7 +14,7 @@
 		var base_api_url = "https://api.github.com/repos/GoodNovember/octopus/contents/";
 
 		var service = {
-			getLetters:getLetters,
+			getLetters: getLetters,
 			getFile: getFile,
 			setAuth: setAuth,
 			removeAuth: removeAuth,
