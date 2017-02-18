@@ -1,0 +1,17 @@
+[
+	{
+		"lastUpdated":"manually",
+		"letters:":[
+			{
+				"filename":"letter1a.md",
+				"title":"A light study of Markdown."
+			},{
+				"filename":"letter1b.md",
+				"title":"A letter to Persephonie"
+			},{
+				"filename":"letter1c.md",
+				"title":"A letter created on GH"
+			}
+		]
+	}
+]
